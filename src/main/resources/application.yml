@@ -1,0 +1,46 @@
+spring:
+#  datasource:
+#    db1: # 数据源1
+#      jdbc-url: jdbc:mysql://localhost:3306/springboot?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+#      username: root
+#      password: root
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    db2: # 数据源2
+#      jdbc-url: jdbc:mysql://localhost:3306/springboot1?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+#      username: root
+#      password: root
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #                                                                                                                允许批量操作
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  security:
+    user:
+      name: admin
+      password: 123456
+      roles: admin
+  task:
+    execution:
+      pool:
+        allow-core-thread-timeout: true
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:com/nanhang/mybatis_plus/dao/*.xml
+  type-aliases-package: com.nanhang.mybatis_plus.pojo
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+redis:
+
+#logging:
+#  level: trace
+#  file:
+#    path:
+#  pattern:
+#    file:
+savePath : /Users/a/Desktop/test998/

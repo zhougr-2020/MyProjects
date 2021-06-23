@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- 编译环境生成日志路径 -->
+	<springProfile name="dev">
+		<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+		<property name="LOG_HOME" value="log" />
+	</springProfile>
+
+	<!-- 测试环境生成日志路径 -->
+	<springProfile name="test">
+		<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+		<property name="LOG_HOME" value="log" />
+	</springProfile>
+
+	<!-- 生产环境生成日志路径 -->
+	<springProfile name="prod">
+		<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+		<property name="LOG_HOME" value="log" />
+	</springProfile>
+
+	<property name="LOG_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%class:%line] [%thread] [%level] %msg%n" />
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 按照每天生成日志文件 -->
+	<!-- 控制台输出日志 -->
+	<appender name="CATALINA"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/catalina.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- 订单日志 -->
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/error/error.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 订单日志 -->
+	<appender name="UPP_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/upp_log/upp_log.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+
+
+
+
+	<!-- 订单日志 -->
+	<appender name="hotelAndFlight"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/hotelAndFlight/hotelAndFlight.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+	<logger name="hotelAndFlight" level="info">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="hotelAndFlight" />
+	</logger>
+
+	<!--用车日志-->
+	<appender name="hirecar"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/hirecar/hirecar.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+	<logger name="hirecar" level="info" additivity="false" >
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="hirecar" />
+	</logger>
+
+	<!--套票日志-->
+	<appender name="ticket"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/ticket/ticket.%d{yyyy-MM-dd}.%i.log
+			</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>20</MaxHistory>
+			<!-- 文件大小 -->
+			<maxFileSize>20MB</maxFileSize>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>
+				${LOG_PATTERN}
+			</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.csair.service.TicketSendOrderInfoConsumer" level="info" additivity="false">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="ticket" />
+	</logger>
+	<logger name="com.csair.service.TicketRefundConsumer" level="info" additivity="false">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="ticket" />
+	</logger>
+	<logger name="com.csair.service.TicketStoreConsumer" level="info" additivity="false">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="ticket" />
+	</logger>
+
+	<logger name="ERROR" level="info">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="UPP_LOG" level="info">
+		<!--指定日志输出方式，引用定义的appender -->
+		<appender-ref ref="UPP_LOG" />
+	</logger>
+
+	<!-- 日志输出级别 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CATALINA" />
+	</root>
+</configuration>

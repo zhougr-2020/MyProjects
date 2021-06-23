@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nanhang.mybatis_plus.dao.UserMapper">
+    <select id="findOne" parameterType="integer" resultType="com.nanhang.mybatis_plus.pojo.User">
+        select * from user where id = #{id}
+    </select>
+
+    <update id="updateUsers" parameterType="java.util.List">
+        <foreach collection="list" item="user" index="index"  open="" separator=";" close="" >
+            update User
+            <set>
+                telephone=#{user.telephone}
+            </set>
+            where id =#{user.id}
+        </foreach>
+    </update>
+
+    <insert id="insertList" parameterType="java.util.List" >
+        insert into user(username,password,address,telephone,role,sex,phone,idcard,school,city,createtime) values
+        <foreach collection="list" item="user" separator="," index="index">
+          ( #{user.username},
+            #{user.password},
+            #{user.address},
+            #{user.telephone},
+            #{user.role},
+            #{user.sex},
+            #{user.phone},
+            #{user.idcard},
+            #{user.school},
+            #{user.city},
+            #{user.createtime} )
+        </foreach>
+
+    </insert>
+
+    <!--<update id="updateBatch" parameterType="list" keyProperty="id" useGeneratedKeys="true">-->
+        <!--<foreach collection="list" index="index" item="item" open="" separator=";" close="">-->
+            <!--update t_acl-->
+            <!--<set>-->
+                <!--acl_desc = #{item.aclDesc,jdbcType=VARCHAR},-->
+                <!--update_time = #{item.updateTime,jdbcType=TIMESTAMP}-->
+            <!--</set>-->
+            <!--WHERE device_id = #{item.deviceId,jdbcType=VARCHAR} and acl_number = #{item.aclNumber,jdbcType=VARCHAR}-->
+        <!--</foreach>-->
+    <!--</update>-->
+</mapper>
