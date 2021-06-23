@@ -19,6 +19,7 @@ public class servletDemo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         new ModelAndView();
+        System.out.println("hello");
     }
 
     @Override
