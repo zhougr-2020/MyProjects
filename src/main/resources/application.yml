@@ -33,9 +33,11 @@ mybatis-plus:
   type-aliases-package: com.nanhang.mybatis_plus.pojo
   configuration:
     map-underscore-to-camel-case: false
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-redis:
+#logging:
+#  config: classpath:logback-spring.xml
+
 
 #logging:
 #  level: trace
@@ -44,3 +46,5 @@ redis:
 #  pattern:
 #    file:
 savePath : /Users/a/Desktop/test998/
+
+

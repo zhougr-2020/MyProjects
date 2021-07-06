@@ -9,6 +9,7 @@ import com.nanhang.mybatis_plus.pojo.User;
 import com.nanhang.mybatis_plus.service.UserService;
 import com.nanhang.mybatis_plus.style.factory.PayService;
 import com.nanhang.mybatis_plus.style.factory.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@Slf4j
+@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
 @SuppressWarnings("all")
@@ -58,9 +59,9 @@ public class UserServiceImpl implements UserService {
         IPage<User> page = new Page<>(1, 5); //当前页 每页几条
         //CollectionUtils.isEmpty()
         IPage<User> userIPage = userMapper.selectPage(page, null);
-//        log.info("page"+userIPage.getRecords().toString());//当前页数据
-//        log.info("count"+userIPage.getTotal()); //总数
-//        log.info("page"+userIPage.getPages()+"   size "+  userIPage.getSize()); //page2   size 5
+        log.info("page"+userIPage.getRecords().toString());//当前页数据
+        log.info("count"+userIPage.getTotal()); //总数
+        log.info("page"+userIPage.getPages()+"   size "+  userIPage.getSize()); //page2   size 5
         Result result = payService.pay("weixin");
         return userMapper.selectList(null);
     }

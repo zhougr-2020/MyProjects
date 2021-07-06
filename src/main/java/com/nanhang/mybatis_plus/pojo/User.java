@@ -6,9 +6,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.validation.constraints.NotBlank;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 //implements UserDetails
 @Data
@@ -140,8 +146,20 @@ public class User {
 //        String str=null;
 //        System.out.println(" afaf".equals(str));
 //    }
-public static void main(String[] args) {
-    User user = new User();
-    System.out.println(user.getSex());
+public static void main(String[] args) throws IOException {
+    // BASE64编码
+    String s = "092910EFCF739FE7D7EE623BA68843CC";
+    BASE64Encoder encoder = new BASE64Encoder();
+    s = encoder.encode(s.getBytes(StandardCharsets.UTF_8));
+            System.out.println(s);
+
+
+    // BASE64解码
+    BASE64Decoder decoder = new BASE64Decoder();
+    byte[] bytes = decoder.decodeBuffer(s);
+    System.out.println(new String(bytes));
+   //   aGVsbG8=
+   //   hello
+
 }
 }

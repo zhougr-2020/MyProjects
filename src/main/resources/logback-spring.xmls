@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	<contextName>Logback For demo Mobile</contextName>
+	<!-- 设置log日志存放地址 -->
+	<!--（改） 单环境设置 -->
+	<property name="LOG_HOME" value="C:\Users\zhouguirong\Desktop" />
+	<!-- 多环境设置 -->
+	<!--<springProfile name="dev">
+        <property name="LOG_HOME" value="/Users/panxiaocheng/Desktop/logbacktest" />
+    </springProfile>
+     <springProfile name="prod">
+        <property name="LOG_HOME" value="/logger/log" />
+    </springProfile>-->
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder默认配置为PartternLayoutEncoder -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80} -%msg%n</pattern>
+		</encoder>
+		<target>System.out</target>
+	</appender>
+	<!-- 按照每天生成日志文件 -->
+	<appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 ,每天保存（侧翻）一次 -->
+			<FileNamePattern>${LOG_HOME}/ccc%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>180</MaxHistory>
+			<maxFileSize>2000MB</maxFileSize>
+			<totalSizeCap>20GB</totalSizeCap>
+
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25} -%msg%n</pattern>
+		</encoder>
+		<!--日志文件最大的大小 -->
+		<!--<triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>-->
+	</appender>
+	<appender name="ROLLING_FILE_genPNR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 ,每天保存（侧翻）一次 -->
+			<FileNamePattern>${LOG_HOME}/genPNR%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>180</MaxHistory>
+			<maxFileSize>2000MB</maxFileSize>
+			<totalSizeCap>20GB</totalSizeCap>
+
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25} -%msg%n</pattern>
+		</encoder>
+		<!--日志文件最大的大小 -->
+		<!--<triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>-->
+	</appender>
+	<appender name="ROLLING_FILE_genTicket" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 ,每天保存（侧翻）一次 -->
+			<FileNamePattern>${LOG_HOME}/genTicket%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+			<!--日志文件保留天数 -->
+			<MaxHistory>180</MaxHistory>
+			<maxFileSize>2000MB</maxFileSize>
+			<totalSizeCap>20GB</totalSizeCap>
+
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25} -%msg%n</pattern>
+		</encoder>
+		<!--日志文件最大的大小 -->
+		<!--<triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>-->
+	</appender>
+	<!-- （改）过滤器，可以指定哪些包，哪个记录到等级， -->
+	<!-- 运用的场景比如，你只需要com.demo.controller包下的error日志输出。定义好name="com.demo.controller" level="ERROR" 就行了 -->
+
+	<logger name="commm2" level="INFO">
+		<!--<appender-ref ref="ROLLING_FILE" />-->
+	</logger>
+	<logger name="commmGenPNR" level="INFO">
+		<appender-ref ref="ROLLING_FILE_genPNR" />
+	</logger>
+	<logger name="commmGenTicket" level="INFO">
+		<appender-ref ref="ROLLING_FILE_genTicket" />
+	</logger>
+	<!-- 全局，控制台遇到INFO及以上级别就进行输出 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" /><!--在本机自测的时候就用这个输出日志-->
+		<!--<appender-ref ref="ROLLING_FILE" />-->
+	</root>
+</configuration>
+
+		<!--
+        这个文件也可以使用自定义的名称，比如logback-config.xml，只需要在application.properties文件中使用logging.config=classpath:logback-config.xml指定即可。
+        -->
