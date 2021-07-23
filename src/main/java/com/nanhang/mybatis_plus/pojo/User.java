@@ -6,18 +6,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import javax.validation.constraints.NotBlank;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.Base64;
 
 //implements UserDetails
 @Data
+@ToString
 @ApiModel(value = "用户实体")
 public class User {
 

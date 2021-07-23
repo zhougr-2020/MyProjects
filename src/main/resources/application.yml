@@ -1,5 +1,7 @@
 spring:
-#  datasource:
+  profiles:
+    active: dev
+  #  datasource:
 #    db1: # 数据源1
 #      jdbc-url: jdbc:mysql://localhost:3306/springboot?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
 #      username: root
@@ -35,8 +37,8 @@ mybatis-plus:
     map-underscore-to-camel-case: false
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-#logging:
-#  config: classpath:logback-spring.xml
+logging:
+  config: classpath:logback-spring.xml
 
 
 #logging:
