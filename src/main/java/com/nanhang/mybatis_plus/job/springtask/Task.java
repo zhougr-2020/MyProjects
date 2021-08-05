@@ -3,6 +3,7 @@ package com.nanhang.mybatis_plus.job.springtask;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nanhang.mybatis_plus.pojo.taopiao.Ticket;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +13,12 @@ import org.springframework.stereotype.Component;
  * @Description: 定时任务
  */
 @Component
+@Slf4j
 public class Task {
 
     @Scheduled(cron = "0/1 * *  * * ? ")
     public void  job(){
-        System.out.println("hello");
+        log.info("hello");
     }
 
 

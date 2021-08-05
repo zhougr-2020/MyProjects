@@ -1,5 +1,6 @@
 package com.nanhang.mybatis_plus.job.quartzConfig;
 
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
@@ -12,6 +13,7 @@ import java.util.Date;
  * 定时任务
  */
 @Component
+@Slf4j
 public class DateTimeJob  {
 
 //    @Override
@@ -22,6 +24,6 @@ public class DateTimeJob  {
 //    }
 
     public void DateJob(){
-        System.out.println("current Time :" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "---" );
+        log.info("current Time :" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "---" );
     }
 }
