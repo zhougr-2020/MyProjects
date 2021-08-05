@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * @author: immortal
  * @CreateDate: 2021/3/1 11:29
- * @Description:
+ * @Description: 登陆效验
  */
 @Target(value = ElementType.METHOD)
 @Retention(value = RetentionPolicy.RUNTIME)
